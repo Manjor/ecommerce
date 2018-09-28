@@ -14,6 +14,8 @@ class Page{
     private $tpl;
     private $options = [];
     private $defaults = [
+        "header"=>true,
+        "footer"=>true,
         "data"=>[]
     ];
 
@@ -38,7 +40,7 @@ class Page{
     
         //Diz qual o primeiro arquivo a ser renderizado
         //Renderizando o arquivo header da pasta /views
-        $this->tpl->draw('header');
+        if($this->options["header"] === true)$this->tpl->draw('header');
     }
 
     private function setData($data = array())
@@ -59,7 +61,7 @@ class Page{
     public function __destruct()
     {
         //Renderiza no final da pagina o Arquivo Footer em /views
-        $this->tpl->draw("footer");
+        if($this->options["footer"] === true)$this->tpl->draw("footer");
         
     }
 
